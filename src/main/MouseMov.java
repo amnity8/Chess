@@ -26,8 +26,10 @@ public class MouseMov extends MouseAdapter {
         else if(board.pieceInPlay != null) {
             if(piece == board.pieceInPlay){
                 board.pieceInPlay = null;
-            }
-            else {
+            } else if (piece != null && piece.sameTeam(board.pieceInPlay)) {
+                board.pieceInPlay = piece;
+                
+            } else {
                 Move move = new Move(board, board.pieceInPlay, col, row);
                 if (board.isValidMove(move)) {
                     board.makeMove(move);

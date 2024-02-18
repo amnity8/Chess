@@ -2,6 +2,7 @@ package pieces;
 import main.Board;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 
 public class Queen extends Piece{
@@ -14,5 +15,10 @@ public class Queen extends Piece{
         this.y_cord = row * board.Square_size;
         this.name = "Queen";
         this.piece_pic = pieces_pic.getSubimage(1 * image_size , isWhite ? 0 : image_size ,image_size,image_size).getScaledInstance(board.Square_size,board.Square_size, BufferedImage.SCALE_SMOOTH);
+    }
+    public ArrayList<Integer> checkForValidMoves(){
+        ArrayList<Integer> possibleMoves = diagonalMoves();
+        possibleMoves.addAll(straightMoves());
+        return possibleMoves;
     }
 }
