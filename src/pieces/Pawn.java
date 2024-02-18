@@ -31,14 +31,26 @@ public class Pawn extends Piece{
         else{
             Piece right = board.pieceAt(col+1, row + whichMove * -1);
             Piece left = board.pieceAt(col-1, row + whichMove * -1);
-            if(right != null || left != null){
-                if (right != null)
-                    possibleMoves.add((row + whichMove * -1)*10 + (col+1));
-                if(left != null)
-                    possibleMoves.add((row + whichMove * -1)*10 + (col-1));
+            if((right != null || left != null)){
+                if (right != null){
+                    if(right.isWhite != isWhite)
+                        possibleMoves.add((row + whichMove * -1)*10 + (col+1));
+                    else
+                        possibleMoves.add((row + whichMove * -1)*10 + col);
 
+
+                }
+                if(left != null)
+                {
+                    if(left.isWhite != isWhite)
+                        possibleMoves.add((row + whichMove * -1)*10 + (col-1));
+                    else
+                        possibleMoves.add((row + whichMove * -1)*10 + col);
+
+
+                }
             }
-            else
+            else if(board.pieceAt(col, row + whichMove * -1) == null)
                 possibleMoves.add((row + whichMove * -1)*10 + col);
 
         }
